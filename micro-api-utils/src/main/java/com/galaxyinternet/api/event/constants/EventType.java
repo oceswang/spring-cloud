@@ -1,4 +1,4 @@
-package com.galaxyinternet.common.event.entity;
+package com.galaxyinternet.api.event.constants;
 
 public enum EventType {
 	USER_CREATED,

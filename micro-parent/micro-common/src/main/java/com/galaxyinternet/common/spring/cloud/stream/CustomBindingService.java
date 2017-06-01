@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.boot.bind.RelaxedDataBinder;
 import org.springframework.cloud.stream.binder.Binder;
@@ -26,14 +26,13 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.validation.beanvalidation.CustomValidatorBean;
 
 import com.galaxyinternet.common.event.config.EventTypeRegistry;
-import com.galaxyinternet.common.event.entity.EventType;
 
 public class CustomBindingService extends BindingService
 {
 
 	private final CustomValidatorBean validator;
 
-	private final Log log = LogFactory.getLog(BindingService.class);
+	private final Logger logger = LoggerFactory.getLogger(CustomBindingService.class);
 
 	private BinderFactory binderFactory;
 
@@ -62,9 +61,8 @@ public class CustomBindingService extends BindingService
 		{
 			return super.bindConsumer(input, inputName);
 		}
-		//String[] bindingTargets = new String[eventTypeRegistry.getEventTypes().size()];
-		//eventTypeRegistry.getEventTypes().toArray(bindingTargets);
-		String[] bindingTargets ={EventType.USER_CREATED.name()};
+		String[] bindingTargets = new String[eventTypeRegistry.getEventTypes().size()];
+		eventTypeRegistry.getEventTypes().toArray(bindingTargets);
 		Collection<Binding<T>> bindings = new ArrayList<>();
 		Binder<T, ConsumerProperties, ?> binder = (Binder<T, ConsumerProperties, ?>) getBinder(inputName, input.getClass());
 		ConsumerProperties consumerProperties = this.bindingServiceProperties.getConsumerProperties(inputName);
@@ -78,7 +76,7 @@ public class CustomBindingService extends BindingService
 		validate(consumerProperties);
 		for (String target : bindingTargets)
 		{
-			System.err.println("bindConsumer- target="+target+", inputName="+inputName+", group="+bindingServiceProperties.getGroup(inputName)+",input="+input);
+			logger.debug("bindConsumer- target="+target+", inputName="+inputName+", group="+bindingServiceProperties.getGroup(inputName)+",input="+input);
 			Binding<T> binding = binder.bindConsumer(target, bindingServiceProperties.getGroup(inputName), input, consumerProperties);
 			bindings.add(binding);
 		}
@@ -121,9 +119,9 @@ public class CustomBindingService extends BindingService
 			{
 				binding.unbind();
 			}
-		} else if (log.isWarnEnabled())
+		} else if (logger.isWarnEnabled())
 		{
-			log.warn("Trying to unbind '" + inputName + "', but no binding found.");
+			logger.warn("Trying to unbind '" + inputName + "', but no binding found.");
 		}
 	}
 
@@ -133,9 +131,9 @@ public class CustomBindingService extends BindingService
 		if (binding != null)
 		{
 			binding.unbind();
-		} else if (log.isWarnEnabled())
+		} else if (logger.isWarnEnabled())
 		{
-			log.warn("Trying to unbind '" + outputName + "', but no binding found.");
+			logger.warn("Trying to unbind '" + outputName + "', but no binding found.");
 		}
 	}
 

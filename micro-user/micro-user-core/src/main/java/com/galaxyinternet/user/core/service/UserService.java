@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.galaxyinternet.common.event.entity.UserCreatedEvent;
 import com.galaxyinternet.common.event.service.EventService;
 import com.galaxyinternet.user.api.UserDTO;
+import com.galaxyinternet.user.api.event.UserCreatedEvent;
 import com.galaxyinternet.user.core.dao.UserDAO;
 import com.galaxyinternet.user.core.entity.User;
 

@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.galaxyinternet.api.event.constants.EventType;
 import com.galaxyinternet.common.entity.LockEntity;
 @Entity
 @Table(name="t_event_publish")

@@ -15,8 +15,8 @@ import org.springframework.messaging.MessageChannel;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.galaxyinternet.api.event.entity.BaseEvent;
 import com.galaxyinternet.common.event.dao.EventPublishDAO;
-import com.galaxyinternet.common.event.entity.BaseEvent;
 import com.galaxyinternet.common.event.entity.EventPublish;
 import com.galaxyinternet.common.event.entity.EventPublishStatus;
 import com.galaxyinternet.common.utils.JsonUtils;
