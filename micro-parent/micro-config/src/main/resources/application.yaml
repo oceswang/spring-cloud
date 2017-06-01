@@ -8,8 +8,8 @@ spring:
     config:
       server:
         git: 
-        #  uri: https://github.com/GalaxyInternet-Micro-Service/micro-config-repo.git
-          uri: file:///D:/Work/Code/micro-config-repo
+          uri: https://github.com/oceswang/spring-cloud.git
+          searchPaths: micro-config-repo
 
 
 eureka:
