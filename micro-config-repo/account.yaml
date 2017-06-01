@@ -1,0 +1,46 @@
+spring:
+  datasource:
+    url: jdbc:mysql://10.9.21.51:3306/account_service
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        serviceId: config-server
+      failFast: true
+      
+    stream:
+      bindings:
+        input:
+          binder: rabbit1
+          group: account
+        output:
+          group: account
+          binder: rabbit1
+      binders:
+        rabbit1:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: vm
+                port: 5672
+                username: test
+                password: test
+                virtualHost: test
+                
+  redis:
+    host: redis-server
+    port: 6379
+    password: foobared
+        
+management:
+  context-path: /admin  

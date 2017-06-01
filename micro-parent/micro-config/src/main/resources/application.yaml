@@ -1,0 +1,21 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git: 
+        #  uri: https://github.com/GalaxyInternet-Micro-Service/micro-config-repo.git
+          uri: file:///D:/Work/Code/micro-config-repo
+
+
+eureka:
+  client: 
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/ 
+      
+management:
+  context-path: /admin
