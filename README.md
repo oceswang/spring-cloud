@@ -12,6 +12,9 @@ spring cloud基础组件
 ### micro-eureka
 注册发现服务
 
+## micro-config-repo
+配置仓库
+
 ## micro-user
 用户服务
 
