@@ -10,7 +10,9 @@ import org.springframework.cloud.stream.config.BindingServiceProperties;
 import org.springframework.cloud.stream.messaging.Processor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.messaging.MessageChannel;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import com.galaxyinternet.common.event.scheduler.EventScheduler;
 import com.galaxyinternet.common.spring.cloud.stream.CustomBindingService;
@@ -24,17 +26,13 @@ public class EventConfiguration
 	@Bean
 	public EventTypeRegistry eventRegistry()
 	{
-
 		return new EventTypeRegistry();
-
 	}
 
 	@Bean
 	public BindingService bindingService(BindingServiceProperties bindingServiceProperties, BinderFactory binderFactory, EventTypeRegistry eventRegistry)
 	{
-
 		return new CustomBindingService(bindingServiceProperties, binderFactory, eventRegistry);
-
 	}
 
 	@Bean
@@ -43,7 +41,6 @@ public class EventConfiguration
 			AbstractBindingTargetFactory<? extends MessageChannel> bindingTargetFactory,
 			DynamicDestinationsBindable dynamicDestinationsBindable)
 	{
-
 		return new BinderAwareChannelResolver(bindingService, bindingTargetFactory, dynamicDestinationsBindable);
 	}
 	
@@ -51,5 +48,16 @@ public class EventConfiguration
 	public EventScheduler eventScheduler()
 	{
 		return new EventScheduler();
+	}
+	@Bean 
+	public TaskExecutor taskExecutor()
+	{
+		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(Runtime.getRuntime().availableProcessors());
+        executor.setMaxPoolSize(20);
+        executor.setQueueCapacity(10000);
+        executor.setThreadNamePrefix("EventExecutor-");
+        executor.initialize();
+        return executor;
 	}
 }

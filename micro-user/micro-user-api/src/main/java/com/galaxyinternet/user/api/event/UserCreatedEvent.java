@@ -12,6 +12,7 @@ public class UserCreatedEvent extends BaseEvent
 	public static final EventType EVENT_TYPE = EventType.USER_CREATED;
 	private Long userId;
 	private LocalDateTime createdTime;
+	public UserCreatedEvent(){}
 	public UserCreatedEvent(Long userId, LocalDateTime createdTime)
 	{
 		this.userId = userId;

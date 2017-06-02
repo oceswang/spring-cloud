@@ -15,4 +15,9 @@ public class EventScheduler
 	{
 		eventService.sendUnpublishEvent();
 	}
+	@Scheduled(fixedRate=500L)
+	public void handleUnprocedssEvent()
+	{
+		eventService.handleUnprocedssEvent();
+	}
 }

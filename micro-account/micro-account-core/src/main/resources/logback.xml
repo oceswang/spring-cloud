@@ -11,10 +11,10 @@ See here for more details: http://gordondickens.com/wordpress/2013/03/27/sawing-
     <jmxConfigurator/>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/user-service.log</file>
+        <file>logs/account-service.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- Daily rollover with compression -->
-            <fileNamePattern>logs/user-service-log-%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <fileNamePattern>logs/account-service-log-%d{yyyy-MM-dd}.gz</fileNamePattern>
             <!-- keep 30 days worth of history -->
             <maxHistory>30</maxHistory>
         </rollingPolicy>

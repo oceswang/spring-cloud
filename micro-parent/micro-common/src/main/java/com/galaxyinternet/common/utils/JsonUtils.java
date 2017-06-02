@@ -57,7 +57,7 @@ public class JsonUtils
 	        try {
 	            return OBJECT_MAPPER.readValue(json, clazz);
 	        } catch (IOException e) {
-	            throw new RuntimeException("将 Json 转换为对象时异常,数据是:" + json, e);
+	            throw new RuntimeException("将 Json 转换为对象时异常,数据是:" + json+", Class 是"+clazz, e);
 	        }
 	    }
 }

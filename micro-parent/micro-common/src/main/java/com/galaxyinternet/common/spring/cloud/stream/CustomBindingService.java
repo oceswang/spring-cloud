@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,7 @@ import org.springframework.cloud.stream.messaging.Processor;
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.beanvalidation.CustomValidatorBean;
 
+import com.galaxyinternet.api.event.constants.EventType;
 import com.galaxyinternet.common.event.config.EventTypeRegistry;
 
 public class CustomBindingService extends BindingService
@@ -32,7 +34,7 @@ public class CustomBindingService extends BindingService
 
 	private final CustomValidatorBean validator;
 
-	private final Logger logger = LoggerFactory.getLogger(CustomBindingService.class);
+	private static final Logger logger = LoggerFactory.getLogger(CustomBindingService.class);
 
 	private BinderFactory binderFactory;
 
@@ -61,8 +63,7 @@ public class CustomBindingService extends BindingService
 		{
 			return super.bindConsumer(input, inputName);
 		}
-		String[] bindingTargets = new String[eventTypeRegistry.getEventTypes().size()];
-		eventTypeRegistry.getEventTypes().toArray(bindingTargets);
+		Set<EventType> bindingTargets = eventTypeRegistry.getEventTypes();
 		Collection<Binding<T>> bindings = new ArrayList<>();
 		Binder<T, ConsumerProperties, ?> binder = (Binder<T, ConsumerProperties, ?>) getBinder(inputName, input.getClass());
 		ConsumerProperties consumerProperties = this.bindingServiceProperties.getConsumerProperties(inputName);
@@ -74,10 +75,10 @@ public class CustomBindingService extends BindingService
 			consumerProperties = extendedConsumerProperties;
 		}
 		validate(consumerProperties);
-		for (String target : bindingTargets)
+		for (EventType target : bindingTargets)
 		{
 			logger.debug("bindConsumer- target="+target+", inputName="+inputName+", group="+bindingServiceProperties.getGroup(inputName)+",input="+input);
-			Binding<T> binding = binder.bindConsumer(target, bindingServiceProperties.getGroup(inputName), input, consumerProperties);
+			Binding<T> binding = binder.bindConsumer(target.name(), bindingServiceProperties.getGroup(inputName), input, consumerProperties);
 			bindings.add(binding);
 		}
 		bindings = Collections.unmodifiableCollection(bindings);

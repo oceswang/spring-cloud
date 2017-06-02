@@ -23,7 +23,7 @@ public class EventProcess extends LockEntity{
 	
 	@Column(name="event_status")
 	@Enumerated(EnumType.STRING)
-	private EventPublishStatus status;
+	private EventProcessStatus status;
 	
 	@Column
 	private String payload;
@@ -35,7 +35,7 @@ public class EventProcess extends LockEntity{
 	@Enumerated(EnumType.STRING)
 	private EventType type;
 	
-	@Column(name="event_id")
+	@Column(name="event_id", unique=true)
 	private String eventId;
 
 	public Long getId() {
@@ -46,11 +46,11 @@ public class EventProcess extends LockEntity{
 		this.id = id;
 	}
 
-	public EventPublishStatus getStatus() {
+	public EventProcessStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(EventPublishStatus status) {
+	public void setStatus(EventProcessStatus status) {
 		this.status = status;
 	}
 
