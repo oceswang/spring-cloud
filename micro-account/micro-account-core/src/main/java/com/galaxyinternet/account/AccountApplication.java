@@ -7,12 +7,12 @@ import org.springframework.context.annotation.Import;
 
 import com.galaxyinternet.api.event.constants.EventType;
 import com.galaxyinternet.common.config.BaseConfiguration;
-import com.galaxyinternet.common.config.WebConfiguration;
+import com.galaxyinternet.common.config.HystrixConfiguration;
 import com.galaxyinternet.common.event.config.EventConfiguration;
 import com.galaxyinternet.common.event.config.ProducerBinder;
 
 @SpringBootApplication
-@Import({ BaseConfiguration.class, WebConfiguration.class, EventConfiguration.class })
+@Import({ BaseConfiguration.class, HystrixConfiguration.class, EventConfiguration.class })
 public class AccountApplication
 {
 
