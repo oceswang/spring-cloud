@@ -1,4 +1,4 @@
-package com.galaxyinternet.user.core;
+package com.galaxyinternet.product.core;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
@@ -12,11 +12,10 @@ import com.galaxyinternet.common.event.config.EventConfiguration;
 @SpringCloudApplication
 @EnableHystrixDashboard
 @Import({BaseConfiguration.class, SwaggerConfiguration.class, EventConfiguration.class})
-public class UserApplication 
+public class ProductApplication 
 {
     public static void main( String[] args )
     {
-    	SpringApplication.run(UserApplication.class, args);
+    	SpringApplication.run(ProductApplication.class, args);
     }
-    
 }

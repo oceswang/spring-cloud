@@ -17,19 +17,24 @@ public class UserService
 {
 	@Autowired
 	UserDAO dao;
-	
 	@Autowired
 	EventService eventService;
+	@Transactional(readOnly=true)
+	public User getById(Long id)
+	{
+		return dao.findOne(id);
+	}
+	
+	@Transactional(readOnly=true)
+	public Iterable<User> findAll()
+	{
+		return dao.findAll();
+	}
 	
 	@Transactional
 	public User save(User user)
 	{
 		return dao.save(user);
-	}
-	@Transactional
-	public Iterable<User> findAll()
-	{
-		return dao.findAll();
 	}
 	@Transactional
 	public User registr(UserDTO dto)
