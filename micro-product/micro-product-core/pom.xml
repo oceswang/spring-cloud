@@ -4,7 +4,7 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.galaxyinternet</groupId>
+		<groupId>com.github</groupId>
 		<artifactId>micro-product</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
@@ -20,17 +20,17 @@
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.galaxyinternet</groupId>
+			<groupId>com.github</groupId>
 			<artifactId>micro-common</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.galaxyinternet</groupId>
+			<groupId>com.github</groupId>
 			<artifactId>micro-product-api</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.galaxyinternet</groupId>
+			<groupId>com.github</groupId>
 			<artifactId>micro-user-api</artifactId>
 			<version>${project.version}</version>
 		</dependency>
