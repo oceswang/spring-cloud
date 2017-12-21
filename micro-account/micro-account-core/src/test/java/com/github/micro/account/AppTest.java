@@ -1,4 +1,4 @@
-package com.galaxyinternet.account;
+package com.github.micro.account;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

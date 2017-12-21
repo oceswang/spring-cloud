@@ -19,8 +19,8 @@ hystrix:
       maxConcurrentConnections: 50
       
 swagger:
-  basePackage: com.galaxyinternet.product
+  basePackage: com.github.micro.product
   title: 商品管理 RESTful API
   desc: 商品管理 RESTFUL API
-  serviceUrl: http://www.galaxyinternet.com
+  serviceUrl: http://www.github.com
   version: 1.0      

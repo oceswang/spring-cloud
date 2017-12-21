@@ -34,7 +34,7 @@ public class EventTypeRegistry implements InitializingBean
 		//扫描Eevent
 		ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(false);
 		provider.addIncludeFilter(new AssignableTypeFilter(BaseEvent.class));
-		Set<BeanDefinition> beanDefs = provider.findCandidateComponents("com/galaxyinternet");
+		Set<BeanDefinition> beanDefs = provider.findCandidateComponents("com/github/micro");
 		for(BeanDefinition def : beanDefs)
 		{
 			String className = def.getBeanClassName();
